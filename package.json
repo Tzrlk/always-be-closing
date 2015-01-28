@@ -1,0 +1,19 @@
+{
+  "name": "always-be-closing",
+  "version": "0.0.1",
+  "description": "A nodejs console project for managing tasks",
+  "main": "index.js",
+  "scripts": {
+    "test": "gulp test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Tzrlk/always-be-closing.git"
+  },
+  "author": "Peter Cummuskey <peterc@aetheric.co.nz>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Tzrlk/always-be-closing/issues"
+  },
+  "homepage": "https://github.com/Tzrlk/always-be-closing"
+}
