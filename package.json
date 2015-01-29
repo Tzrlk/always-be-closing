@@ -2,7 +2,7 @@
   "name": "always-be-closing",
   "version": "0.0.1",
   "description": "A nodejs console project for managing tasks",
-  "main": "index.js",
+  "main": "src/main/app.js",
   "scripts": {
     "test": "gulp test"
   },
