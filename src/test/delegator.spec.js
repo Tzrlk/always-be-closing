@@ -1,3 +1,5 @@
+/* global require, describe */
+
 var expect = require('chai').expect;
 var proxy = require('proxyquire');
 
@@ -14,6 +16,8 @@ describe('The console parser', function() {
 		}
 
 	});
+
+	expect(delegator).to.be.a('function');
 
 	describe('Calling the parser with no args', function() {
 		delegator({ _: [] });
