@@ -3,7 +3,7 @@ var proxy = require('proxyquire');
 
 describe('The console parser', function() {
 
-	var app = proxy('../main/app.js', {
+	var delegator = proxy('../main/delegator.js', {
 
 		'./main/cmd-close.js': function() {
 			//
@@ -16,17 +16,17 @@ describe('The console parser', function() {
 	});
 
 	describe('Calling the parser with no args', function() {
-		app();
+		delegator({ _: [] });
 	});
 
 	describe('Calling the parser with "close"', function() {
 
 		describe('and no options', function() {
-			app('close');
+			delegator({ _: [ 'close' ] });
 		});
 
 		describe('and an unrecognised option', function() {
-			app('close', 'squark');
+			delegator({ _: [ 'close', 'squark' ] });
 		});
 
 	});
