@@ -7,6 +7,6 @@ describe('The close operation', function() {
 		//
 	});
 
-	expect(close).to.ba.a('function');
+	expect(close).to.be.a('function');
 
 });
