@@ -8,10 +8,13 @@ var commands = {
 /**
  * Entry point for the application. Parses the input arguments and determines which sub-functions to execute.
  */
-function run() {
+function run(yargs) {
+
+	yargs = yargs || require('yargs');
+	// TODO: setup yargs.
 
 	var options = yargs.argv; // This is a stab in the dark.
-	var commandName = options['command']; // This is a stab in the dark.
+	var commandName = yargs.argv._[0]; // This is a stab in the dark.
 	var commandFile = commands[commandName];
 	if (commandFile) {
 		var command = require(commandFile);

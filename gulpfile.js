@@ -1,5 +1,7 @@
 var gulp = require('gulp');
+var mocha = require('gulp-mocha');
 
 gulp.task('test', [], function() {
-	// TODO: Add a testing framework.
+	gulp.src('src/test/**.js')
+		.pipe(mocha());
 });

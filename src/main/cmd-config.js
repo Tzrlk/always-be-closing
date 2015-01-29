@@ -5,6 +5,7 @@ var fs = require('fs');
  * @param {Object} config.
  */
 function config(config) {
+	console.log('Executing config task.');
 
 	// TODO: Check to see if a configuration file already exists.
 	// TODO: If exists, update with provided properties
