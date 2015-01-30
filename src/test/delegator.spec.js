@@ -5,35 +5,41 @@ var proxy = require('proxyquire');
 
 describe('The console parser', function() {
 
-	var delegator = proxy('../main/delegator.js', {
-
-		'./main/cmd-close.js': function() {
-			//
-		},
-
-		'./main/cmd-config.js': function() {
-			//
-		}
-
-	});
-
-	expect(delegator).to.be.a('function');
+//	expect(delegator).to.be.a('function');
 
 	describe('Calling the parser with no args', function() {
 		process.argv = [ 'cloze' ];
-		delegator();
+		proxy('../main/delegator.js', {
+
+			'./cmd/config.js': function() {
+				expect(true).to.be(false);
+			}
+
+		})();
 	});
 
 	describe('Calling the parser with "config"', function() {
 
 		describe('and no options', function() {
 			process.argv = [ 'cloze', 'config' ];
-			delegator();
+			proxy('../main/delegator.js', {
+
+				'./cmd/config.js': function() {
+					expect(true).to.be(true);
+				}
+
+			})();
 		});
 
 		describe('and an unrecognised option', function() {
 			process.argv = [ 'cloze', 'config', 'squarlo' ];
-			delegator();
+			proxy('../main/delegator.js', {
+
+				'./cmd/config.js': function() {
+					expect(true).to.be(false);
+				}
+
+			})();
 		});
 
 	});
