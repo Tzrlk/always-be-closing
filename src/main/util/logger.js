@@ -3,6 +3,16 @@
 var events = require('events');
 var yargs = require('yargs');
 
+yargs
+
+	.boolean('quiet')
+	.alias('q', 'quiet')
+	.describe('q', 'Turns off all logging')
+
+	.count('verbose')
+	.alias('v', 'verbose')
+	.describe('v', 'Tells the logger to provide more information when logging.');
+
 function format(level, message, context) {
 	return '[' + level.toUpperCase() + '] ' + message + ' :: ' + JSON.stringify(context);
 }
@@ -16,12 +26,7 @@ var emitter = null;
 function createEmitter() {
 	var emitter = new events.EventEmitter();
 
-	var quiet = yargs
-		.boolean('quiet')
-		.alias('q', 'quiet')
-		.describe('q', 'Turns off all logging')
-		.argv
-		.quiet;
+	var quiet = yargs.argv.quiet;
 
 	if (quiet) {
 
@@ -42,12 +47,7 @@ function createEmitter() {
 		process.exit(1);
 	});
 
-	var verbosity = yargs
-		.count('verbose')
-		.alias('v', 'verbose')
-		.describe('v', 'Tells the logger to provide more information when logging.')
-		.argv
-		.verbose;
+	var verbosity = yargs.argv.verbose;
 
 	if (verbosity < 1) {
 		return emitter;

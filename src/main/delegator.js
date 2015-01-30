@@ -1,32 +1,30 @@
+/* global require, module */
+
 var yargs = require('yargs');
 var logger = require('./util/logger.js');
 
-/* global require, module */
+yargs
+	.usage('Usage: $0 [cmd] <opts>')
+	.demand(2, 'Some kind of operation is needed.');
 
 var commands = {
-	close: 'close.js',
-	config: 'config.js'
+	config: require('./cmd/config.js')
 };
 
 /**
  * Entry point for the application. Parses the input arguments and determines which sub-functions to execute.
  */
-function delegator(emitter) {
+module.exports = function delegator() {
 
-	yargs
-		.usage('Usage: $0 [cmd] <opts>')
-		.demand(2, 'Some kind of operation is needed.');
-
-	var commandName = yargs.argv._[1]; // This is a stab in the dark.
+	var commandName = yargs.argv._[1];
 	var commandFile = commands[commandName];
+
 	if (!commandFile) {
-		logger.error('Cannot execute. Command ' + commandName + ' is not recognised.');
+		logger.error('Cannot execute. Command is not recognised.', commandName);
 		return;
 	}
 
 	var command = require(commandFile);
-	command.call(this);
+	command();
 
-}
-
-module.exports = delegator;
+};

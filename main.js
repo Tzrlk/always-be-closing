@@ -2,10 +2,11 @@
 
 /* global require, process, console */
 
+var yargs = require('yargs');
 var cli = require('../src/main/app.js');
 
 try {
-	cli();
+	cli(yargs.argv);
 	process.exit(0);
 } catch (error) {
 	console.error(error);

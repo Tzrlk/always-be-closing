@@ -1,12 +1,16 @@
 /* global require, module */
 
 var fs = require('fs');
+var yargs = require('yargs');
+
+yargs
+	.boolean('config');
 
 /**
  * This command creates and/or edits the task management configuration for the current location.
  * @param {Object} config.
  */
-function config(config) {
+module.exports = function config(config) {
 	console.log('Executing config task.');
 
 	// TODO: Check to see if a configuration file already exists.
@@ -15,6 +19,4 @@ function config(config) {
 	// TODO: if not found, prompt for new
 	// TODO: if found, prompt for update, or new
 
-}
-
-module.exports = config;
+};

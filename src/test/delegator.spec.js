@@ -1,4 +1,4 @@
-/* global require, describe */
+/* global require, describe, process */
 
 var expect = require('chai').expect;
 var proxy = require('proxyquire');
