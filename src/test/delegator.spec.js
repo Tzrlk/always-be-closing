@@ -20,17 +20,20 @@ describe('The console parser', function() {
 	expect(delegator).to.be.a('function');
 
 	describe('Calling the parser with no args', function() {
-		delegator({ _: [] });
+		process.argv = [ 'cloze' ];
+		delegator();
 	});
 
-	describe('Calling the parser with "close"', function() {
+	describe('Calling the parser with "config"', function() {
 
 		describe('and no options', function() {
-			delegator({ _: [ 'close' ] });
+			process.argv = [ 'cloze', 'config' ];
+			delegator();
 		});
 
 		describe('and an unrecognised option', function() {
-			delegator({ _: [ 'close', 'squark' ] });
+			process.argv = [ 'cloze', 'config', 'squarlo' ];
+			delegator();
 		});
 
 	});

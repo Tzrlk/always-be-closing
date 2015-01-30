@@ -3,11 +3,17 @@
 var events = require('events');
 var yargs = require('yargs');
 
-function log(level, message, context) {
-	console.log('[' + level.toUpperCase() + '] ' + message + ' :: ' + JSON.stringify(context));
+function format(level, message, context) {
+	return '[' + level.toUpperCase() + '] ' + message + ' :: ' + JSON.stringify(context);
 }
 
-module.exports = function() {
+function log(level, message, context) {
+	console.log(format(level, message, context));
+}
+
+var emitter = null;
+
+function createEmitter() {
 	var emitter = new events.EventEmitter();
 
 	var quiet = yargs
@@ -71,4 +77,32 @@ module.exports = function() {
 	});
 
 	return emitter;
+}
+
+function getEmitter() {
+	if (!emitter) {
+		emitter = createEmitter();
+	}
+
+	return emitter;
+}
+
+module.exports = {
+
+	error: function(message, context) {
+		getEmitter().emit('error', message, context);
+	},
+
+	warn: function(message, context) {
+		getEmitter().emit('warn', message, context);
+	},
+
+	info: function(message, context) {
+		getEmitter().emit('info', message, context);
+	},
+
+	debug: function(message, context) {
+		getEmitter().emit('debug', message, context);
+	}
+
 };
