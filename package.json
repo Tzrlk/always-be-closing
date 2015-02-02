@@ -18,6 +18,8 @@
   "homepage": "https://github.com/Tzrlk/always-be-closing",
   "dependencies": {
     "lodash": "^3.0.0",
+    "nodegit": "^0.2.7",
+    "promise": "^6.1.0",
     "yargs": "^1.3.3"
   },
   "devDependencies": {
